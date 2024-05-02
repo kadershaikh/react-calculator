@@ -7,11 +7,15 @@ const Calculator = () => {
 
   const handleButtonClick = (value) => {
     if (value === '=') {
-      try {
-        const result = eval(input);
-        setOutput(result);
-      } catch (error) {
+      if (input.trim() === '') {
         setOutput('Error');
+      } else {
+        try {
+          const result = eval(input);
+          setOutput(result);
+        } catch (error) {
+          setOutput('Error');
+        }
       }
     } else if (value === 'C') {
       setInput('');
@@ -20,7 +24,7 @@ const Calculator = () => {
       setInput((prevInput) => prevInput + value);
     }
   };
-
+  
   return (
     <div className="calculator">
         <h1 className='heading'>React Calculator</h1>
